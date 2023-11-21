@@ -53,12 +53,26 @@ let questions = [
 ];
 let currentQuestion = 0
 
+let rightQuestions = 0
+
 function init() {
+   
     document.getElementById('allQuestion').innerHTML = questions.length;
     showQuestion()
 }
 
 function showQuestion() {
+   
+
+    if(currentQuestion >= questions.length){
+        
+        document.getElementById('endScreen').style= '';
+        document.getElementById('mainContainer').style= 'display: none;'
+        document.getElementById('endAllQuestion').innerHTML = questions.length;
+        document.getElementById('rightAnswers').innerHTML = rightQuestions
+        
+        
+    }else{
     let question = questions[currentQuestion];
     document.getElementById('questionText').innerHTML = question['question']
 
@@ -66,6 +80,11 @@ function showQuestion() {
     document.getElementById('answer_2').innerHTML = question['answer_2']
     document.getElementById('answer_3').innerHTML = question['answer_3']
     document.getElementById('answer_4').innerHTML = question['answer_4']
+
+    document.getElementById('currentQuestionNumber').innerHTML = currentQuestion +1;
+   }
+
+    
 
 }
 function answer(selection) {
@@ -76,15 +95,36 @@ let idOfRightAnswer = `answer_${question['right_answer']}`
 
 if (selectedQuestionNumber == question['right_answer']) {
     console.log('richtig');
-    document.getElementById(selection).parentNode.classList.add('bg-success');
+    document.getElementById(selection).classList.add('btn-outline-success');
+    rightQuestions++;
 
 } else{
     console.log('falsch')
-    document.getElementById(selection).parentNode.classList.add('bg-danger');
-    document.getElementById(idOfRightAnswer).parentNode.classList.add('bs-success-border');
+    document.getElementById(selection).classList.add('btn-outline-danger');
+    document.getElementById(idOfRightAnswer).classList.add('btn-outline-success');
+}
+    
+    document.getElementById('next-btn').disabled = false;
+    }
+
+function nextQuestion(){
+    currentQuestion++;
+    showQuestion();
+    document.getElementById('next-btn').disabled = true;
+    resetButtons();
 }
 
 
+function resetButtons(){
+    document.getElementById('answer_1').classList.remove('btn-outline-danger');
+    document.getElementById('answer_1').classList.remove('btn-outline-success');
 
+    document.getElementById('answer_2').classList.remove('btn-outline-danger');
+    document.getElementById('answer_2').classList.remove('btn-outline-success');
 
-    }
+    document.getElementById('answer_3').classList.remove('btn-outline-danger');
+    document.getElementById('answer_3').classList.remove('btn-outline-success');
+
+    document.getElementById('answer_4').classList.remove('btn-outline-danger');
+    document.getElementById('answer_4').classList.remove('btn-outline-success');
+}

@@ -13,11 +13,27 @@
     align-items: center;
     padding-top: 10px;
 }
+.quizAnswerBtn{
+    margin-top: 10px;
+}
 .quizAnswerBtn:hover{
     cursor: pointer;
     background: rgba(0, 0, 0, 0.1);
+  
 }
-.bg-success,.bg-danger{
-    color: white;
-    font-weight: bold;
+.btn-outline-success,.btn-outline-danger{
+   
+ border: solid 2px !important;
+ font-weight: bold !important;
+}
+.trophy{
+    height: 200px;
+}
+.textCenter{
+    text-align: center;
+}
+.endScreen{
+    display: flex;
+    text-align: center;
+    
 }
