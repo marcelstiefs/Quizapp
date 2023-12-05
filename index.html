@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./img/question favicon.png">
     <title>Quizapp</title>
     <link rel="stylesheet"
         href="C:\Users\metal\OneDrive\Desktop\dev\Quizapp\node_modules\bootstrap\dist\css\bootstrap.min.css">
@@ -21,74 +22,79 @@
 
 <body onload="init()">
 
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">
-                <H1>Quizapp</H1>
-            </span>
-        </div>
-    </nav>
+
     <div class="endScreen" id="endScreen" style="display: none;">
-    <span class="textCenter">Herzlichen Glückwunsch!<br>Du hast das Quiz Abgeschlossen!</span>
-    <img class="trophy" src="./img/trophy-png-30582.png">
-    <div class="textCenter">Du hast <b id="rightAnswers">xx</b> von <b id="endAllQuestion">xx</b> Fragen richtig beantwortet</div></div>
-    
+        <span class="textCenter">Herzlichen Glückwunsch!<br>Du hast das Quiz abgeschlossen!</span>
+        <img class="trophy" src="./img/trophy-png-30582.png">
+        <div class="textCenter">Du hast <b id="rightAnswers">xx</b> von <b id="endAllQuestion">xx</b> Fragen richtig
+            beantwortet</div>
+        <button type="button" class="btn btn-dark restartBtn" onclick="restartGame()">Erneut spielen</button>
+    </div>
+
     <div class="mainContainer" id="mainContainer" style="">
-        <div class="card" style="width: 30rem;">
-            <img src="./img/fragezeichen.jpg" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title" id="questionText">Frage</h5>
-                
-                    
+        <div class="bigCard">
+            <div class="card workWindow" style="width: 30rem;">
+                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <div id="progressBar" class="progress-bar" style="width: 25%"></div>
+                </div>
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container-fluid">
+                        <span class="navbar-brand mb-0 h1">
+                            <H1>Quizapp</H1>
+                        </span>
+                    </div>
+                </nav>
+
+
+                <img src="./img/fragezeichen.jpg" class="card-img-top">
+
+
+
+                <div class="card-body">
+                    <h5 class="card-title bigQuestion" id="questionText">Frage</h5>
+
+
                     <div class="card quizAnswerBtn mb-2">
                         <button type="button" class="btn btn-outline-secondary" id="answer_1"
                             onclick="answer('answer_1')">
                             Antwort
                         </button>
                     </div>
-               
 
-                <div class="card quizAnswerBtn mb-2">
-                    <button type="button" class="btn btn-outline-secondary" id="answer_2" onclick="answer('answer_2')">
-                        Antwort
-                    </button>
-                </div>
-                <div class="card quizAnswerBtn mb-2">
-                    <button type="button" class="btn btn-outline-secondary" id="answer_3" onclick="answer('answer_3')">
-                        Antwort
-                    </button>
-                </div>
-                <div class="card quizAnswerBtn mb-2">
-                    <button type="button" class="btn btn-outline-secondary" id="answer_4" onclick="answer('answer_4')">
-                        Antwort
-                    </button>
-                </div>
 
-                <div class="question-footer">
-                    <span>
-                        <b id="currentQuestionNumber">1</b>von<b id="allQuestion">5</b>Fragen
-                    </span>
-                    <button type="button" class="btn btn-dark" id="next-btn" disabled onclick="nextQuestion()">Nächste Frage</button>
+                    <div class="card quizAnswerBtn mb-2">
+                        <button type="button" class="btn btn-outline-secondary" id="answer_2"
+                            onclick="answer('answer_2')">
+                            Antwort
+                        </button>
+                    </div>
+                    <div class="card quizAnswerBtn mb-2">
+                        <button type="button" class="btn btn-outline-secondary" id="answer_3"
+                            onclick="answer('answer_3')">
+                            Antwort
+                        </button>
+                    </div>
+                    <div class="card quizAnswerBtn mb-2">
+                        <button type="button" class="btn btn-outline-secondary" id="answer_4"
+                            onclick="answer('answer_4')">
+                            Antwort
+                        </button>
+                    </div>
+
+                    <div class="question-footer">
+                        <span>
+                            <b id="currentQuestionNumber">1</b>von<b id="allQuestion">5</b>Fragen
+                        </span>
+                        <button type="button" class="btn btn-dark" id="next-btn" disabled
+                            onclick="nextQuestion()">Nächste
+                            Frage</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </body>
 
 </html>

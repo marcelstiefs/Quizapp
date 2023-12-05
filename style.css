@@ -1,11 +1,26 @@
+body {
+    padding: 0px;
+}
+
 .mainContainer {
     background-color: rgb(254, 250, 239) !important;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
-.question-footer{
+
+
+
+
+
+
+.card {
+    box-shadow: 0px 0px 10px 3px #000000;
+}
+
+.question-footer {
     border-top: 1px solid rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: space-between;
@@ -13,27 +28,65 @@
     align-items: center;
     padding-top: 10px;
 }
-.quizAnswerBtn{
+
+.quizAnswerBtn {
     margin-top: 10px;
 }
-.quizAnswerBtn:hover{
+
+.quizAnswerBtn:hover {
     cursor: pointer;
     background: rgba(0, 0, 0, 0.1);
-  
+
 }
-.btn-outline-success,.btn-outline-danger{
-   
- border: solid 2px !important;
- font-weight: bold !important;
+
+.btn-outline-success,
+.btn-outline-danger {
+
+    border: solid 2px !important;
+    font-weight: bold !important;
 }
-.trophy{
+
+.trophy {
     height: 200px;
 }
-.textCenter{
+
+.textCenter {
     text-align: center;
 }
-.endScreen{
+
+.endScreen {
+    height: 80vh;
     display: flex;
     text-align: center;
-    
+    flex-direction: column;
+    justify-content: center;
+    font-size: 25px;
+    margin-top: 25px;
+
+}
+
+.endScreen img {
+    object-fit: contain;
+
+}
+
+.restartBtn {
+    margin: 50px;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.progress-bar {
+    background-color: rgb(93, 140, 0) !important;
+}
+
+@media(max-width: 500px) {
+    .workWindow {
+        width: 100% !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
 }

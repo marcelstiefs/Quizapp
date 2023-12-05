@@ -55,67 +55,52 @@ let currentQuestion = 0
 
 let rightQuestions = 0
 
+let successSound = new Audio("./sounds/success.mp3")
+let failSound = new Audio("./sounds/fail.mp3")
+
 function init() {
-   
+
     document.getElementById('allQuestion').innerHTML = questions.length;
     showQuestion()
 }
 
 function showQuestion() {
-   
+    if (gameIsOver()) {
+        showEndscreen();
 
-    if(currentQuestion >= questions.length){
-        
-        document.getElementById('endScreen').style= '';
-        document.getElementById('mainContainer').style= 'display: none;'
-        document.getElementById('endAllQuestion').innerHTML = questions.length;
-        document.getElementById('rightAnswers').innerHTML = rightQuestions
-        
-        
-    }else{
-    let question = questions[currentQuestion];
-    document.getElementById('questionText').innerHTML = question['question']
+    } else {
+        updateToNextQuestion();
+        updateProgressbar();
 
-    document.getElementById('answer_1').innerHTML = question['answer_1']
-    document.getElementById('answer_2').innerHTML = question['answer_2']
-    document.getElementById('answer_3').innerHTML = question['answer_3']
-    document.getElementById('answer_4').innerHTML = question['answer_4']
 
-    document.getElementById('currentQuestionNumber').innerHTML = currentQuestion +1;
-   }
 
-    
-
+    }
 }
 function answer(selection) {
-     let question = questions[currentQuestion];
-let selectedQuestionNumber = selection.slice(-1);
+    let question = questions[currentQuestion];
+    let selectedQuestionNumber = selection.slice(-1);
+    let idOfRightAnswer = `answer_${question['right_answer']}`
 
-let idOfRightAnswer = `answer_${question['right_answer']}`
-
-if (selectedQuestionNumber == question['right_answer']) {
-    console.log('richtig');
-    document.getElementById(selection).classList.add('btn-outline-success');
-    rightQuestions++;
-
-} else{
-    console.log('falsch')
-    document.getElementById(selection).classList.add('btn-outline-danger');
-    document.getElementById(idOfRightAnswer).classList.add('btn-outline-success');
-}
-    
-    document.getElementById('next-btn').disabled = false;
+    if ((selectedQuestionNumber == question['right_answer'])) {
+        document.getElementById(selection).classList.add('btn-outline-success');
+        rightQuestions++;
+        successSound.play();
+    } else {
+        document.getElementById(selection).classList.add('btn-outline-danger');
+        document.getElementById(idOfRightAnswer).classList.add('btn-outline-success');
+        failSound.play();
     }
+    document.getElementById('next-btn').disabled = false;
+}
 
-function nextQuestion(){
+function nextQuestion() {
     currentQuestion++;
     showQuestion();
     document.getElementById('next-btn').disabled = true;
     resetButtons();
 }
 
-
-function resetButtons(){
+function resetButtons() {
     document.getElementById('answer_1').classList.remove('btn-outline-danger');
     document.getElementById('answer_1').classList.remove('btn-outline-success');
 
@@ -127,4 +112,42 @@ function resetButtons(){
 
     document.getElementById('answer_4').classList.remove('btn-outline-danger');
     document.getElementById('answer_4').classList.remove('btn-outline-success');
+}
+
+function restartGame() {
+    currentQuestion = 0
+    rightQuestions = 0
+    document.getElementById('endScreen').style = 'display: none;'
+    document.getElementById('mainContainer').style = '';
+
+    init()
+}
+
+function showEndscreen() {
+    document.getElementById('endScreen').style = '';
+    document.getElementById('mainContainer').style = 'display: none;'
+    document.getElementById('endAllQuestion').innerHTML = questions.length;
+    document.getElementById('rightAnswers').innerHTML = rightQuestions
+}
+
+function updateToNextQuestion() {
+
+    let question = questions[currentQuestion];
+    document.getElementById('questionText').innerHTML = question['question']
+    document.getElementById('answer_1').innerHTML = question['answer_1']
+    document.getElementById('answer_2').innerHTML = question['answer_2']
+    document.getElementById('answer_3').innerHTML = question['answer_3']
+    document.getElementById('answer_4').innerHTML = question['answer_4']
+    document.getElementById('currentQuestionNumber').innerHTML = currentQuestion + 1;
+
+}
+
+function updateProgressbar() {
+    let percent = currentQuestion / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progressBar').style = `width:${percent}%`;
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length
 }
